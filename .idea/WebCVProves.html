@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currículum Vitae - Oriol Ramos Abel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Inclou les llibreries GSAP i ScrollReveal -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+
+    <!-- Llibreries pel traductor-->
+    <script src="https://unpkg.com/i18next@20.6.1/i18next.min.js"></script>
+    <script src="https://unpkg.com/i18next-browser-languagedetector@6.1.2/i18nextBrowserLanguageDetector.min.js"></script>
+    <script src="https://unpkg.com/i18next-http-backend@1.3.1/i18nextHttpBackend.min.js"></script>
+
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            background-color: #f4f7fa; /* Fondo suave para todo el sitio */
+            color: #000000; /* Color de texto principal */
+        }
+
+        /* Barra de navegación fija */
+        nav {
+            position: fixed;
+            width: 100%;
+            background-color: #ffffff;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Sombra más sutil */
+            z-index: 1000;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin-right: 25px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #0068d7;
+            font-weight: 450;
+            padding: 10px;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #012756; /* Acento de color más cálido */
+            border-bottom: 2px solid #001934;
+        }
+
+        /* Icono de lenguaje */
+        .language-icon {
+            position: fixed;
+            top: 10px;
+            right: 30px;
+            font-size: 20px;
+            cursor: pointer;
+            color: #ff6b6b;
+        }
+
+        /* Secciones generales */
+        section {
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 60px 20px;
+            transition: opacity 1s ease-in-out;
+            flex-direction: column;
+            position: relative;
+        }
+
+        /* Fondo de las secciones con degradado */
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #e0f7fa 0%, #ffccbc 100%);
+            transition: background-color 1s;
+        }
+
+        .section1 { background: linear-gradient(135deg, #0068d7, #2d84e0); }
+        .section2 { background: linear-gradient(135deg, #2d84e0, #5eb6ec); }
+        .section3 { background: linear-gradient(135deg, #5eb6ec, #7fcad5); }
+        .section4 { background: linear-gradient(135deg, #7fcad5, #44e5cd); }
+        .section5 { background: linear-gradient(135deg, #44e5cd, #b0e7d7); }
+        .section6 { background: linear-gradient(135deg, #b0e7d7, #ffffff); }
+
+        /* Encabezados y textos */
+        h1, h2 {
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #000000;
+            font-size: 2.5em;
+        }
+
+        p, ul {
+            font-size: 1.2em;
+            max-width: 800px;
+            padding: 0 20px;
+            color: #000000;
+        }
+
+        /* Botón de descarga */
+        a.download {
+            display: inline-block;
+            margin-top: 25px;
+            text-decoration: none;
+            color: white;
+            background-color: #ff6b6b;
+            padding: 12px 28px;
+            border-radius: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        a.download:hover {
+            background-color: #d9534f;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Contenido con imágenes redondeadas */
+        .content img {
+            border-radius: 5%;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            background: azure;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .skills-container {
+            display: flex;
+            justify-content: space-around; /* Espai entre les targetes d'habilitats */
+            flex-wrap: wrap; /* Permet que les targetes es moguin a la següent línia si cal */
+            width: 100%; /* Ocupa tota l'amplada disponible */
+            max-width: 1200px;
+            margin-top: 20px; /* Espai entre el títol i les habilitats */
+        }
+
+        /* Tarjetas de habilidades */
+        .skill-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            margin: 10px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            width: 250px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px); /* Efecto flotante */
+        }
+
+        .skill-card img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+
+        /* Contenidor per a les icones de llenguatges amb l'efecte de desplaçament */
+        .languages-prog-marquee {
+            overflow: hidden; /* Oculta les icones que surten fora de la pantalla */
+            white-space: nowrap; /* Manté tots els elements en la mateixa línia */
+            margin: 0 auto;
+            padding: 10px 0;
+            position: relative;
+        }
+
+        /* Contenidor intern de les icones */
+        .languages-prog-container {
+            display: inline-block;
+            animation: scroll-languages-prog 15s linear infinite; /* Animació per moure les icones de dreta a esquerra */
+        }
+
+        /* Efecto de hover en iconos de lenguajes */
+        .language-prog-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 20px;
+            transition: transform 0.3s;
+        }
+
+        .language-prog-icon:hover {
+            transform: scale(1.2);
+        }
+
+        /* Navegación suave entre secciones */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Animació per desplaçar les icones de dreta a esquerra */
+        @keyframes scroll-languages-prog {
+            from {
+                transform: translateX(100%); /* Comença des de la dreta */
+            }
+            to {
+                transform: translateX(-100%); /* Es desplaça cap a l'esquerra */
+            }
+        }
+
+        /* Títulos de sección */
+        .section3 h2, .section4 h2, .section6 h2 {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #000000;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 30px;
+        }
+        .section5 .content {
+            display: flex;
+            flex-direction: column; /* Disposar els elements en columna */
+            align-items: center; /* Centrar els elements horitzontalment */
+            justify-content: center;
+            padding: 20px;
+            text-align: center;
+        }
+        /* Listas de experiencia y educación */
+        .experience-list, .education-list {
+            list-style-type: none;
+            padding-left: 0;
+            font-size: 1.1em;
+            line-height: 1.8em;
+        }
+
+        .experience-line, .education-line {
+            width: 5px;
+            height: 20px;
+            background-color: #ff6b6b;
+            margin-right: 15px;
+            display: inline-block;
+        }
+        /* Navegación suave entre secciones */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Animació per desplaçar les icones de dreta a esquerra */
+        @keyframes scroll-languages-prog {
+            from {
+                transform: translateX(100%); /* Comença des de la dreta */
+            }
+            to {
+                transform: translateX(-100%); /* Es desplaça cap a l'esquerra */
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Barra de navegación -->
+<nav>
+    <ul>
+        <li><a href="#section1">Inicio</a></li>
+        <li><a href="#section2">Perfil</a></li>
+        <li><a href="#section3">Experiencia</a></li>
+        <li><a href="#section4">Formación</a></li>
+        <li><a href="#section5">Habilidades</a></li>
+        <li><a href="#section6">Lenguajes</a></li>
+        <li><a href="#section7">Contacto</a></li>
+    </ul>
+    <div class="language-icon">
+        <i class="fas fa-globe" style="color: #000000; margin-right: 5px;"></i>
+        <select id="language-select" onchange="changeLanguage(this.value)" style="background-color: transparent; border: none; color: #000000; font-size: 16px; cursor: pointer;">
+            <option style="color: #000000" value="ca">Català</option>
+            <option style="color: #000000" value="es">Castellano</option>
+            <option style="color: #000000" value="en">English</option>
+        </select>
+    </div>
+</nav>
+
+
+<section id="section1" class="section1">
+    <div class="content">
+        <img src="la_teva_imatge.png" alt="Imatge de Nom" />
+        <div>
+            <h1>Oriol Ramos Abel</h1>
+            <p class="translatable" data-key="Enginyer Informàtic">Enginyer Informàtic</p>
+        </div>
+    </div>
+</section>
+
+<section id="section2" class="section2">
+    <div class="background section2"></div>
+    <h2 class="translatable" data-key="Perfil Professional">Perfil Professional</h2>
+    <a href="OriolRamosCV.pdf" class="download" target="_blank">Descarregar el CV (PDF)</a>
+</section>
+
+<section id="section3" class="section3">
+    <div class="background section3"></div>
+    <h2 class="translatable" data-key="Experiéncia Laboral">Experiéncia Laboral</h2>
+    <ul class="experience-list">
+        <li class="translatable" data-key="Javascript FullStack Developer - DSET">
+            <span class="experience-line"></span> Javascript FullStack Developer - DSET
+        </li>
+        <li class="translatable" data-key="Web Developer - FreeLance">
+            <span class="experience-line"></span> Web Developer - FreeLance
+        </li>
+    </ul>
+</section>
+
+
+<section id="section4" class="section4">
+    <div class="background section4"></div>
+    <h2 class="translatable" data-key="Formació Acadèmica">Formació Acadèmica</h2>
+    <ul class="education-list">
+        <li class="translatable" data-key="Bachillerato - Institut de Vilablareix - 2018/2020">
+            <span class="education-line"></span> Bachillerato - Institut de Vilablareix - 2018/2020
+        </li>
+        <li class="translatable" data-key="Grau en Enginyeria Informatica - Universitat de Girona - 2021/2025">
+            <span class="education-line"></span> Grau en Enginyeria Informatica - Universitat de Girona - 2021/2025
+        </li>
+    </ul>
+</section>
+
+
+<!-- Secció 5: Habilitats -->
+<section id="section5" class="section5">
+    <div class="content">
+        <h2 class="translatable" data-key="Habilitats en Aprenentatge">Habilitats en Aprenentatge</h2>
+        <div class="skills-container">
+            <div class="skill-card">
+                <img src="url_imatge_IA.jpg" alt="Intel·ligència Artificial" class="skill-image" />
+                <h3 class="translatable" data-key="Intel·ligència Artificial">Intel·ligència Artificial</h3>
+            </div>
+            <div class="skill-card">
+                <img src="url_imatge_data_analysis.jpg" alt="Anàlisi de Dades" class="skill-image" />
+                <h3 class="translatable" data-key="Anàlisi de Dades">Anàlisi de Dades</h3>
+            </div>
+            <div class="skill-card">
+                <img src="url_imatge_web_development.jpg" alt="Desenvolupament Web" class="skill-image" />
+                <h3 class="translatable" data-key="Desenvolupament Web">Desenvolupament Web</h3>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="section6" class="section6">
+    <div class="content">
+        <h2 class="translatable" data-key="Llenguatges Dominats">Llenguatges Dominats</h2>
+        <div class="languages-prog-marquee">
+            <div class="languages-prog-container">
+                <img src="url_icon_html.png" alt="HTML" class="language-prog-icon" />
+                <img src="url_icon_css.png" alt="CSS" class="language-prog-icon" />
+                <img src="url_icon_js.png" alt="JavaScript" class="language-prog-icon" />
+                <img src="url_icon_python.png" alt="Python" class="language-prog-icon" />
+                <img src="url_icon_java.png" alt="Java" class="language-prog-icon" />
+                <img src="url_icon_sql.png" alt="SQL" class="language-prog-icon" />
+                <img src="url_icon_c.png" alt="C#" class="language-prog-icon" />
+                <img src="url_icon_cpp.png" alt="C++" class="language-prog-icon" />
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="section7" class="section7">
+    <div class="background section7"></div>
+    <h2 style="color: #000000" class="translatable" data-key="Contacta conmigo:">Contacta conmigo:</h2>
+    <h3 style="color: #000000">oriol842@gmail.com</h3>
+</section>
+
+<script>
+    // Funció per canviar l'idioma
+    // Objecte que conté totes les traduccions agrupades per clau
+    const translations = {
+        // Secció 2: Perfil Professional
+        "Enginyer Informàtic": {
+            ca: "Enginyer Informàtic",
+            es: "Ingeniero Informático",
+            en: "Computer Engineer"
+        },"Perfil Professional": {
+            ca: "Perfil Professional",
+            es: "Perfil Profesional",
+            en: "Professional Profile"
+        },
+        "Descarregar el CV (PDF)": {
+            ca: "Descarregar el CV (PDF)",
+            es: "Descargar el CV (PDF)",
+            en: "Download CV (PDF)"
+        },
+
+        // Secció 3: Experiència Laboral
+        "Experiéncia Laboral": {
+            ca: "Experiència Laboral",
+            es: "Experiencia Laboral",
+            en: "Work Experience"
+        },
+        "Javascript FullStack Developer - DSET": {
+            ca: "Javascript FullStack Developer - DSET",
+            es: "Javascript FullStack Developer - DSET",
+            en: "Javascript FullStack Developer - DSET"
+        },
+        "Web Developer - FreeLance": {
+            ca: "Web Developer - FreeLance",
+            es: "Desarrollador Web - Freelance",
+            en: "Web Developer - Freelance"
+        },
+
+        // Secció 4: Formació Acadèmica
+        "Formació Acadèmica": {
+            ca: "Formació Acadèmica",
+            es: "Formación Académica",
+            en: "Academic Background"
+        },
+        "Bachillerato - Institut de Vilablareix - 2018/2020": {
+            ca: "Batxillerat - Institut de Vilablareix - 2018/2020",
+            es: "Bachillerato - Institut de Vilablareix - 2018/2020",
+            en: "High School - Institut de Vilablareix - 2018/2020"
+        },
+        "Grau en Enginyeria Informatica - Universitat de Girona - 2021/2025": {
+            ca: "Grau en Enginyeria Informàtica - Universitat de Girona - 2021/2025",
+            es: "Grado en Ingeniería Informática - Universitat de Girona - 2021/2025",
+            en: "Bachelor's Degree in Computer Engineering - University of Girona - 2021/2025"
+        },
+
+        // Secció 5: Habilitats
+        "Habilitats en Aprenentatge": {
+            ca: "Habilitats en Aprenentatge",
+            es: "Habilidades de Aprendizaje",
+            en: "Learning Skills"
+        },
+        "Intel·ligència Artificial": {
+            ca: "Intel·ligència Artificial",
+            es: "Inteligencia Artificial",
+            en: "Artificial Intelligence"
+        },
+        "Anàlisi de Dades": {
+            ca: "Anàlisi de Dades",
+            es: "Análisis de Datos",
+            en: "Data Analysis"
+        },
+        "Desenvolupament Web": {
+            ca: "Desenvolupament Web",
+            es: "Desarrollo Web",
+            en: "Web Development"
+        },
+
+        // Secció 6: Contacte
+        "Contacta conmigo:": {
+            ca: "Contacta amb mi:",
+            es: "Contacta conmigo:",
+            en: "Contact me:"
+        },
+
+        // Secció 7: Lenguages
+        "Llenguatges Dominats": {
+            ca: "Llenguatges Dominats",
+            es: "Lenguajes Dominados",
+            en: "Dominated Languages"
+        },
+        "oriol842@gmail.com": {
+            ca: "oriol842@gmail.com", // No hi ha traducció per al correu electrònic
+            es: "oriol842@gmail.com",
+            en: "oriol842@gmail.com"
+        }
+    };
+
+    // Funció per canviar l'idioma
+    function changeLanguage(language) {
+        const elements = document.querySelectorAll('.translatable'); // Selecciona tots els elements translatables
+
+        elements.forEach(el => {
+            const key = el.dataset.key; // Obtén la clau per a cada element
+
+            // Comprova si existeix la clau a l'objecte translations i aplica la traducció corresponent
+            if (translations[key] && translations[key][language]) {
+                el.textContent = translations[key][language];
+            }
+        });
+    }
+
+    // Inicialitza amb l'idioma per defecte (per exemple, català)
+    document.addEventListener('DOMContentLoaded', function () {
+        changeLanguage('ca'); // Pots canviar 'ca' per qualsevol idioma inicial
+    });
+
+    // Animació GSAP per fer que les seccions apareguin
+    gsap.to("section", {
+        opacity: 1,
+        duration: 1,
+        stagger: 0.5
+    });
+
+    // ScrollReveal per fer que els elements apareguin a mesura que es desplacen
+    ScrollReveal().reveal('h1', { delay: 300, distance: '50px', opacity: 0, duration: 1000 });
+    ScrollReveal().reveal('h2', { delay: 300, distance: '50px', opacity: 0, duration: 1000 });
+    ScrollReveal().reveal('p', { delay: 300, distance: '50px', opacity: 0, duration: 1000 });
+    ScrollReveal().reveal('ul', { delay: 300, distance: '50px', opacity: 0, duration: 1000 });
+    ScrollReveal().reveal('.download', { delay: 300, distance: '50px', opacity: 0, duration: 1000 });
+    ScrollReveal().reveal('.skill-card', { delay: 300, distance: '50px', opacity: 0, duration: 1000 });
+</script>
+
+</body>
+</html>
