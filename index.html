@@ -22,14 +22,16 @@
             margin: 0;
             font-family: 'Poppins', sans-serif;
             overflow-x: hidden;
+            background: linear-gradient(180deg, #393bda, #4590d9, #7edaef, #ffffff, #ffffff);
+            background-size: 200% 200%;
         }
 
         /* Barra de navegación fija */
         nav {
             position: fixed;
             width: 100%;
-            background-color: #ffffff;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: rgba(255, 255, 255, 0.8); /* Un poco transparente para que se vea el fondo */
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Sombra más sutil */
             z-index: 1000;
             padding: 10px;
             display: flex;
@@ -45,45 +47,46 @@
         }
 
         nav ul li {
-            margin-right: 20px;
+            margin-right: 25px;
         }
 
         nav ul li a {
             text-decoration: none;
-            color: #007bff;
-            font-weight: 600;
+            color: #0068d7;
+            font-weight: 450;
             padding: 10px;
+            transition: color 0.3s;
         }
 
         nav ul li a:hover {
-            color: #0056b3;
-            border-bottom: 2px solid #0056b3;
+            color: #012756; /* Acento de color más cálido */
+            border-bottom: 2px solid #001934;
         }
-        /* Estil de l'icona del món */
+
+        /* Icono de lenguaje */
         .language-icon {
-            position: fixed; /* Posicionat de manera fixa */
-            top: 5px; /* Espai des de la part superior */
-            right: 20px; /* Espai des de la dreta */
-            font-size: 20px; /* Mida de l'icona */
-            cursor: pointer; /* Cursor de mà per indicar interactivitat */
-            color: white; /* Color de l'icona */
-            z-index: 1000; /* Assegura que estigui per sobre d'altres elements */
+            position: fixed;
+            top: 10px;
+            right: 30px;
+            font-size: 20px;
+            cursor: pointer;
+            color: #ff6b6b;
         }
-        /* Estilos de las secciones */
+
+        /* Secciones generales */
         section {
-            height: 80vh;
+            min-height: 85vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 20px;
-            transition: opacity 1s;
+            padding: 60px 20px;
+            transition: opacity 1s ease-in-out;
             flex-direction: column;
+            position: relative;
         }
 
-        .section1, .section2, .section3, .section4, .section5, .section6, .section7 {
-            padding: 40px 0;
-        }
+        /* Fondo de las secciones con degradado */
         .background {
             position: absolute;
             top: 0;
@@ -91,65 +94,69 @@
             width: 100%;
             height: 100%;
             z-index: -1;
+            background: linear-gradient(135deg, #e0f7fa 0%, #ffccbc 100%);
             transition: background-color 1s;
         }
-        .section1 { background-color: #007bff; }
-        .section2 { background-color: #4994e0; }
-        .section3 { background-color: #5eb6ec; }
-        .section4 { background-color: #7fcad5; }
-        .section5 { background-color: #44e5cd; }
-        .section6 { background-color: #b0e7d7; }
-        .section7 { background-color: #ffffff; }
 
-        /* Imágenes redondeadas */
-        .content img {
-            border-radius: 50%;
-            width: 120px;
-            height: 120px;
-            object-fit: cover;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        /* Fondo animado por secciones */
+        .section1, .section2, .section3, .section4, .section5, .section6, .section7 {
+            background: none;
+            transition: background-color 1s ease;
+        }
+
+
+        /* Animación del texto en secciones */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        section h2, section p {
+            animation: fadeIn 2s ease-in-out;
         }
 
         /* Encabezados y textos */
         h1, h2 {
             font-weight: 600;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            color: #000000;
+            font-size: 2.5em;
         }
 
         p, ul {
             font-size: 1.2em;
             max-width: 800px;
             padding: 0 20px;
+            color: #000000;
         }
 
         /* Botón de descarga */
         a.download {
             display: inline-block;
-            margin-top: 20px;
+            margin-top: 25px;
             text-decoration: none;
             color: white;
-            background-color: #007bff;
-            padding: 10px 20px;
-            border-radius: 25px;
+            background-color: #ff6b6b;
+            padding: 12px 28px;
+            border-radius: 30px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             transition: background-color 0.3s, box-shadow 0.3s;
         }
 
         a.download:hover {
-            background-color: #0056b3;
+            background-color: #d9534f;
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
         }
 
-        .section5 .content {
-            display: flex;
-            flex-direction: column; /* Disposar els elements en columna */
-            align-items: center; /* Centrar els elements horitzontalment */
-            justify-content: center;
-            padding: 20px;
-            text-align: center;
+        /* Contenido con imágenes redondeadas */
+        .content img {
+            border-radius: 5%;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            background: azure;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
-
         .skills-container {
             display: flex;
             justify-content: space-around; /* Espai entre les targetes d'habilitats */
@@ -159,16 +166,23 @@
             margin-top: 20px; /* Espai entre el títol i les habilitats */
         }
 
+        /* Tarjetas de habilidades */
         .skill-card {
             display: flex;
             flex-direction: column;
             align-items: center;
-            background-color: rgba(103, 103, 103, 0.34);
+            background-color: rgba(255, 255, 255, 0.8);
             padding: 20px;
             margin: 10px;
-            border-radius: 10px;
-            width: 250px; /* Fixar l'amplada de cada targeta d'habilitat */
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            width: 250px;
             text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px); /* Efecto flotante */
         }
 
         .skill-card img {
@@ -176,67 +190,7 @@
             height: 100px;
             object-fit: cover;
             border-radius: 50%;
-            margin-bottom: 10px;
-        }
-        /* Estils per al títol de la secció */
-        .section3 h2 {
-            font-size: 28px;
-            font-weight: bold;
-            color: #000000;
-            margin-bottom: 20px;
-        }
-
-        /* Estils per a la llista d'experiència */
-        .experience-list {
-            list-style-type: none; /* Elimina els punts de la llista */
-            padding-left: 0; /* Elimina el padding a l'esquerra */
-        }
-
-        /* Estils per als elements de la llista */
-        .experience-list li {
-            font-size: 18px;
-            padding: 10px 0; /* Espaiat entre elements */
-            display: flex;
-            align-items: center;
-        }
-
-        /* Estil de la barra vertical */
-        .experience-line {
-            width: 5px;
-            height: 20px;
-            background-color: #000000; /* Color de la barra */
-            margin-right: 10px; /* Separació entre la barra i el text */
-            display: inline-block;
-        }
-        /* Estils per al títol de la secció */
-        .section4 h2 {
-            font-size: 28px;
-            font-weight: bold;
-            color: #000000;
-            margin-bottom: 20px;
-        }
-
-        /* Estils per a la llista de formació acadèmica */
-        .education-list {
-            list-style-type: none; /* Elimina els punts de la llista */
-            padding-left: 0; /* Elimina el padding a l'esquerra */
-        }
-
-        /* Estils per als elements de la llista */
-        .education-list li {
-            font-size: 18px;
-            padding: 10px 0; /* Espaiat entre elements */
-            display: flex;
-            align-items: center;
-        }
-
-        /* Estil de la barra vertical */
-        .education-line {
-            width: 5px;
-            height: 20px;
-            background-color: #000000; /* Color de la barra */
-            margin-right: 10px; /* Separació entre la barra i el text */
-            display: inline-block;
+            margin-bottom: 15px;
         }
 
         /* Contenidor per a les icones de llenguatges amb l'efecte de desplaçament */
@@ -280,24 +234,52 @@
                 transform: translateX(-100%); /* Es desplaça cap a l'esquerra */
             }
         }
-        /* Contenidor general */
-        .section6 {
-            position: relative; /* Posicionament relatiu per permetre que els elements fills es col·loquin en relació amb aquest */
-            padding: 50px 0; /* Espaiat superior i inferior */
-        }
 
-        /* Estils per al títol h2 */
-        .section6 h2 {
-            font-size: 28px;
+        /* Títulos de sección */
+        .section3 h2, .section4 h2, .section6 h2 {
+            font-size: 2.2em;
             font-weight: bold;
             color: #000000;
-            position: absolute; /* Posicionament absolut respecte del contenidor */
-            top: 10%; /* Posicionat un 10% des de la part superior del contenidor */
-            left: 50%; /* Centrat horitzontalment */
-            transform: translateX(-50%); /* Ajust per a centrar completament l'element */
-            z-index: 10; /* Fa que el títol estigui per sobre de les icones */
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 30px;
+        }
+        .section5 .content {
+            display: flex;
+            flex-direction: column; /* Disposar els elements en columna */
+            align-items: center; /* Centrar els elements horitzontalment */
+            justify-content: center;
+            padding: 20px;
             text-align: center;
-            padding: 10px 20px; /* Espaiat intern per millorar la llegibilitat */
+        }
+        /* Listas de experiencia y educación */
+        .experience-list, .education-list {
+            list-style-type: none;
+            padding-left: 0;
+            font-size: 1.1em;
+            line-height: 1.8em;
+        }
+
+        .experience-line, .education-line {
+            width: 5px;
+            height: 20px;
+            background-color: #ff6b6b;
+            margin-right: 15px;
+            display: inline-block;
+        }
+        /* Navegación suave entre secciones */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Animació per desplaçar les icones de dreta a esquerra */
+        @keyframes scroll-languages-prog {
+            from {
+                transform: translateX(100%); /* Comença des de la dreta */
+            }
+            to {
+                transform: translateX(-100%); /* Es desplaça cap a l'esquerra */
+            }
         }
     </style>
 </head>
@@ -327,7 +309,7 @@
 
 <section id="section1" class="section1">
     <div class="content">
-        <img src="la_teva_imatge.jpg" alt="Imatge de Nom" />
+        <img src="la_teva_imatge.png" alt="Imatge de Nom" />
         <div>
             <h1>Oriol Ramos Abel</h1>
             <p class="translatable" data-key="Enginyer Informàtic">Enginyer Informàtic</p>
@@ -400,8 +382,9 @@
                 <img src="url_icon_js.png" alt="JavaScript" class="language-prog-icon" />
                 <img src="url_icon_python.png" alt="Python" class="language-prog-icon" />
                 <img src="url_icon_java.png" alt="Java" class="language-prog-icon" />
-                <img src="url_icon_php.png" alt="PHP" class="language-prog-icon" />
-                <!-- Afegir més icones de llenguatges segons sigui necessari -->
+                <img src="url_icon_sql.png" alt="SQL" class="language-prog-icon" />
+                <img src="url_icon_c.png" alt="C#" class="language-prog-icon" />
+                <img src="url_icon_cpp.png" alt="C++" class="language-prog-icon" />
             </div>
         </div>
     </div>
