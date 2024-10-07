@@ -22,15 +22,15 @@
             margin: 0;
             font-family: 'Poppins', sans-serif;
             overflow-x: hidden;
-            background-color: #f4f7fa; /* Fondo suave para todo el sitio */
-            color: #000000; /* Color de texto principal */
+            background: linear-gradient(180deg, #393bda, #4590d9, #7edaef, #ffffff, #ffffff);
+            background-size: 200% 200%;
         }
 
         /* Barra de navegación fija */
         nav {
             position: fixed;
             width: 100%;
-            background-color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.8); /* Un poco transparente para que se vea el fondo */
             box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Sombra más sutil */
             z-index: 1000;
             padding: 10px;
@@ -98,12 +98,22 @@
             transition: background-color 1s;
         }
 
-        .section1 { background: linear-gradient(135deg, #0068d7, #2d84e0); }
-        .section2 { background: linear-gradient(135deg, #2d84e0, #5eb6ec); }
-        .section3 { background: linear-gradient(135deg, #5eb6ec, #7fcad5); }
-        .section4 { background: linear-gradient(135deg, #7fcad5, #44e5cd); }
-        .section5 { background: linear-gradient(135deg, #44e5cd, #b0e7d7); }
-        .section6 { background: linear-gradient(135deg, #b0e7d7, #ffffff); }
+        /* Fondo animado por secciones */
+        .section1, .section2, .section3, .section4, .section5, .section6, .section7 {
+            background: none;
+            transition: background-color 1s ease;
+        }
+
+
+        /* Animación del texto en secciones */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        section h2, section p {
+            animation: fadeIn 2s ease-in-out;
+        }
 
         /* Encabezados y textos */
         h1, h2 {
