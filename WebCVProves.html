@@ -26,56 +26,103 @@
             background-size: 200% 200%;
         }
 
-        /* Barra de navegación fija */
-        nav {
-            position: fixed;
-            width: 100%;
-            background-color: rgba(255, 255, 255, 0.8); /* Un poco transparente para que se vea el fondo */
-            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Sombra más sutil */
-            z-index: 1000;
-            padding: 10px;
+        /* General Style for the Navigation Bar */
+        .nav-bar {
+            position: fixed; /* Fa que la barra sigui flotant */
+            top: 20px; /* Afegeix separació amb la part superior */
+            left: 50%;
+            transform: translateX(-50%); /* Centra horitzontalment */
+            background-color: #ffffff; /* Fons blanc */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Lleugera ombra per donar profunditat */
+            border-radius: 12px; /* Cantonades arrodonides */
+            border: 1px solid #000000; /* Línia de contorn molt estreta i negra */
+            padding: 10px 20px;
+            z-index: 1000; /* Assegura que la barra es mantingui a sobre del contingut */
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
+            width: 90%; /* Amplada de la barra, pots ajustar-la */
+            max-width: 1200px;
         }
 
-        nav ul {
+        /* Estil per a la llista d'elements */
+        .nav-bar ul {
             list-style-type: none;
-            display: flex;
             margin: 0;
             padding: 0;
+            display: flex;
+            gap: 20px; /* Espaiat entre elements */
         }
 
-        nav ul li {
-            margin-right: 25px;
-        }
-
-        nav ul li a {
+        /* Estil per als enllaços de navegació */
+        .nav-bar ul li a {
             text-decoration: none;
-            color: #0068d7;
-            font-weight: 450;
-            padding: 10px;
-            transition: color 0.3s;
+            color: #000000; /* Color negre intens per al text */
+            font-size: 16px;
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: 8px; /* Cantonades arrodonides per als botons */
+            transition: background-color 0.3s ease, color 0.3s ease, font-size 0.3s ease;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Afegir un toc brillant al text */
         }
 
-        nav ul li a:hover {
-            color: #012756; /* Acento de color más cálido */
-            border-bottom: 2px solid #001934;
+        /* Canvi de color en passar el cursor per sobre */
+        .nav-bar ul li a:hover {
+            background-color: #f8f8f8; /* Fons més clar en passar el cursor */
+            color: #0066ff; /* Text blau brillant en passar el cursor */
+            font-size: 18px; /* Augment lleuger de la mida del text */
         }
 
-        /* Icono de lenguaje */
+        /* Estil per a la icona de llenguatge i el selector */
         .language-icon {
-            position: fixed;
-            top: 10px;
-            right: 30px;
-            font-size: 20px;
-            cursor: pointer;
-            color: #ff6b6b;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
+
+        /* Icona de llengua */
+        .language-icon i {
+            color: #000000; /* Color de la icona negre */
+            font-size: 18px;
+        }
+
+        /* Selector d'idioma */
+        .language-icon select {
+            background-color: #ffffff; /* Fons blanc sense transparència */
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 5px;
+            font-size: 14px;
+            color: #000000; /* Color del text negre */
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Canvi de color quan el selector està en focus */
+        .language-icon select:focus {
+            outline: none;
+            background-color: #f0f0f0; /* Canvia el fons en fer clic */
+        }
+
+        /* Ajustos per a pantalles més petites */
+        @media (max-width: 768px) {
+            .nav-bar ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .nav-bar {
+                width: 100%;
+                left: 0;
+                transform: none;
+                top: 10px;
+            }
+        }
+
 
         /* Secciones generales */
         section {
-            min-height: 85vh;
+            min-height: 70vh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -99,7 +146,7 @@
         }
 
         /* Fondo animado por secciones */
-        .section1, .section2, .section3, .section4, .section5, .section6, .section7 {
+        .section1, .section2, .section5, .section6, .section7, .formacio-professional, .perfil {
             background: none;
             transition: background-color 1s ease;
         }
@@ -115,13 +162,20 @@
             animation: fadeIn 2s ease-in-out;
         }
 
-        /* Encabezados y textos */
+        /* Encabezados */
         h1, h2 {
             font-weight: 600;
             margin-bottom: 15px;
-            color: #000000;
+            color: #ffffff;
             font-size: 2.5em;
+            text-shadow:
+                    -1px -1px 0 #000000, /* Ombra negra a l'esquerra i a dalt */
+                    1px -1px 0 #000000,  /* Ombra negra a la dreta i a dalt */
+                    -1px 1px 0 #000000,  /* Ombra negra a l'esquerra i a baix */
+                    1px 1px 0 #000000;   /* Ombra negra a la dreta i a baix */
+            padding: 10px 20px; /* Espaiat intern per donar aire al títol */
         }
+
 
         p, ul {
             font-size: 1.2em;
@@ -235,15 +289,6 @@
             }
         }
 
-        /* Títulos de sección */
-        .section3 h2, .section4 h2, .section6 h2 {
-            font-size: 2.2em;
-            font-weight: bold;
-            color: #000000;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 30px;
-        }
         .section5 .content {
             display: flex;
             flex-direction: column; /* Disposar els elements en columna */
@@ -281,75 +326,197 @@
                 transform: translateX(-100%); /* Es desplaça cap a l'esquerra */
             }
         }
+
+        /*Estil Formacio Profesional*/
+        /* General style for the Formació Professional section */
+        .formacio-professional {
+            padding: 40px;
+            margin-top: 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        /* Title of the section */
+        .section-title {
+            font-size: 30px;
+            color: #000000; /* Color negre brillant */
+            text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2); /* Afegir brillantor al text */
+            margin-bottom: 30px;
+        }
+
+        /* Tabs container */
+        .tabs-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        /* General style for each tab */
+        .tab {
+            background-color: #ffffff;
+            border-radius: 12px;
+            border: 1px solid #000000; /* Contorn negre */
+            padding: 20px;
+            flex: 1;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombratge lleuger */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Hover effect for the tabs */
+        .tab:hover {
+            transform: translateY(-5px); /* Lleuger efecte flotant */
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Augment de l'ombra en passar el cursor */
+        }
+
+        /* Titles inside tabs */
+        .tab h3 {
+            font-size: 20px;
+            color: #000000;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Toc brillant */
+            margin-bottom: 20px;
+        }
+
+        /* Experience and Education list */
+        .experience-list, .education-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .experience-list li, .education-list li {
+            font-size: 16px;
+            color: #000000;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Lleuger brillantor */
+        }
+
+        /* Experience lines and education lines */
+        .experience-line, .education-line {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background-color: #007bff; /* Blau per destacar els punts */
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .tabs-container {
+                flex-direction: column;
+            }
+        }
+
     </style>
 </head>
 <body>
 
 <!-- Barra de navegación -->
-<nav>
+<nav class="nav-bar">
     <ul>
-        <li><a href="#section1">Inicio</a></li>
-        <li><a href="#section2">Perfil</a></li>
-        <li><a href="#section3">Experiencia</a></li>
-        <li><a href="#section4">Formación</a></li>
-        <li><a href="#section5">Habilidades</a></li>
-        <li><a href="#section6">Lenguajes</a></li>
-        <li><a href="#section7">Contacto</a></li>
+        <li><a href="#section1">Inici</a></li>
+        <li><a href="#formacio-professional">Formació Professional</a></li>
+        <li><a href="#Perfil">Perfil</a></li>
+        <li><a href="#section5">Habilitats</a></li>
+        <li><a href="#section6">Llenguatges</a></li>
+        <li><a href="#section2">Currículum</a></li>
+        <li><a href="#section7">Contacte</a></li>
     </ul>
     <div class="language-icon">
-        <i class="fas fa-globe" style="color: #000000; margin-right: 5px;"></i>
-        <select id="language-select" onchange="changeLanguage(this.value)" style="background-color: transparent; border: none; color: #000000; font-size: 16px; cursor: pointer;">
-            <option style="color: #000000" value="ca">Català</option>
-            <option style="color: #000000" value="es">Castellano</option>
-            <option style="color: #000000" value="en">English</option>
+        <i class="fas fa-globe"></i>
+        <select id="language-select" onchange="changeLanguage(this.value)">
+            <option value="ca">Català</option>
+            <option value="es">Castellano</option>
+            <option value="en">English</option>
         </select>
     </div>
 </nav>
-
 
 <section id="section1" class="section1">
     <div class="content">
         <img src="la_teva_imatge.png" alt="Imatge de Nom" />
         <div>
             <h1>Oriol Ramos Abel</h1>
-            <p class="translatable" data-key="Enginyer Informàtic">Enginyer Informàtic</p>
+            <p class="translatable" style="color: #ffffff;" data-key="Enginyer Informàtic">Enginyer Informàtic</p>
         </div>
     </div>
 </section>
 
-<section id="section2" class="section2">
-    <div class="background section2"></div>
-    <h2 class="translatable" data-key="Perfil Professional">Perfil Professional</h2>
-    <a href="OriolRamosCV.pdf" class="download" target="_blank">Descarregar el CV (PDF)</a>
+<section id="formacio-professional" class="formacio-professional">
+    <h2>Formació Professional</h2>
+    <div class="tabs-container">
+        <div class="tab experience-tab">
+            <h3 class="translatable" data-key="Experiéncia Laboral">Experiéncia Laboral</h3>
+            <ul class="experience-list">
+                <li class="translatable" data-key="Javascript FullStack Developer - DSET">
+                    <span class="experience-line"></span> Javascript FullStack Developer - DSET
+                </li>
+                <li class="translatable" data-key="Web Developer - FreeLance">
+                    <span class="experience-line"></span> Web Developer - FreeLance
+                </li>
+            </ul>
+        </div>
+        <div class="tab education-tab">
+            <h3 class="translatable" data-key="Formació Acadèmica">Formació Acadèmica</h3>
+            <ul class="education-list">
+                <li class="translatable" data-key="Bachillerato - Institut de Vilablareix - 2018/2020">
+                    <span class="education-line"></span> Bachillerato - Institut de Vilablareix - 2018/2020
+                </li>
+                <li class="translatable" data-key="Grau en Enginyeria Informatica - Universitat de Girona - 2021/2025">
+                    <span class="education-line"></span> Grau en Enginyeria Informatica - Universitat de Girona - 2021/2025
+                </li>
+            </ul>
+        </div>
+    </div>
 </section>
 
-<section id="section3" class="section3">
-    <div class="background section3"></div>
-    <h2 class="translatable" data-key="Experiéncia Laboral">Experiéncia Laboral</h2>
-    <ul class="experience-list">
-        <li class="translatable" data-key="Javascript FullStack Developer - DSET">
-            <span class="experience-line"></span> Javascript FullStack Developer - DSET
-        </li>
-        <li class="translatable" data-key="Web Developer - FreeLance">
-            <span class="experience-line"></span> Web Developer - FreeLance
-        </li>
-    </ul>
+<section id="perfil" class="perfil">
+    <h2>Perfil</h2>
+    <div class="tabs-container">
+        <!-- Pestanya de Llengües -->
+        <div class="tab language-tab">
+            <h3 class="translatable" data-key="Llengües">Llengües</h3>
+            <ul class="language-list">
+                <li class="translatable" data-key="Català: llengua d'us habitual">
+                    Català: llengua d'us habitual
+                </li>
+                <li class="translatable" data-key="Castellà: llengua d'us habitual">
+                    Castellà: llengua d'us habitual
+                </li>
+                <li class="translatable" data-key="Anglès: nivell mig">
+                    Anglès: nivell mig
+                </li>
+            </ul>
+        </div>
+
+        <!-- Pestanya de Títuls -->
+        <div class="tab education-tab">
+            <h3 class="translatable" data-key="Títuls">Títuls</h3>
+            <ul class="education-list">
+                <li class="translatable" data-key="Estudiant de Quart Grau d'Informatica a la UdG">
+                    Estudiant de Quart Grau d'Informàtica a la UdG
+                </li>
+                <li class="translatable" data-key="Carnet de Conduir B (cotxe)">
+                    Carnet de Conduir B (cotxe)
+                </li>
+                <li class="translatable" data-key="Curs d’especialització Fem Biologia in silico">
+                    Curs d’especialització Fem Biologia in silico
+                </li>
+                <li class="translatable" data-key="Estudiant pel B2">
+                    Estudiant pel B2
+                </li>
+            </ul>
+        </div>
+
+        <!-- Pestanya de Sobre Mi -->
+        <div class="tab aboutme-tab">
+            <h3 class="translatable" data-key="Sobre Mi">Sobre Mi</h3>
+            <p class="translatable" data-key="Em considero una persona molt treballadora">
+                Em considero una persona molt treballadora, responsable i organitzada, amb ganes d'aprendre noves coses. Sempre he treballat amb altres companys a la feina, i per mi és molt important el respecte i la cooperativitat per tenir un bon entorn de treball.
+            </p>
+        </div>
+    </div>
 </section>
-
-
-<section id="section4" class="section4">
-    <div class="background section4"></div>
-    <h2 class="translatable" data-key="Formació Acadèmica">Formació Acadèmica</h2>
-    <ul class="education-list">
-        <li class="translatable" data-key="Bachillerato - Institut de Vilablareix - 2018/2020">
-            <span class="education-line"></span> Bachillerato - Institut de Vilablareix - 2018/2020
-        </li>
-        <li class="translatable" data-key="Grau en Enginyeria Informatica - Universitat de Girona - 2021/2025">
-            <span class="education-line"></span> Grau en Enginyeria Informatica - Universitat de Girona - 2021/2025
-        </li>
-    </ul>
-</section>
-
 
 <!-- Secció 5: Habilitats -->
 <section id="section5" class="section5">
@@ -390,11 +557,16 @@
     </div>
 </section>
 
+<section id="section2" class="section2">
+    <div class="background section2"></div>
+    <h2 class="translatable" data-key="Currículum">Currículum</h2>
+    <a href="OriolRamosCV.pdf" class="download" target="_blank">Descarregar el CV (PDF)</a>
+</section>
 
 <section id="section7" class="section7">
     <div class="background section7"></div>
-    <h2 style="color: #000000" class="translatable" data-key="Contacta conmigo:">Contacta conmigo:</h2>
-    <h3 style="color: #000000">oriol842@gmail.com</h3>
+    <h2  class="translatable" data-key="Contacta conmigo:">Contacta conmigo:</h2>
+    <h3>oriol842@gmail.com</h3>
 </section>
 
 <script>
